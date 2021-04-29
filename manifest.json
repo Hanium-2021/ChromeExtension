@@ -1,0 +1,11 @@
+{
+  "name": "Test",
+  "description": "500만원 가자!",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["activeTab"],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}
