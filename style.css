@@ -1,8 +1,26 @@
 body {
-    width: 300px;
+    width: 200px;
     height: 300px;
 }
 
-input {
+input:hover {
+    background-color: beige;
+}
+
+#highlight {
+    margin-top: 15px;
+    margin-left: 25px;
+    height: 30px;
+    width: 150px;
+    border-radius: 30%;
+    font-size: 12px;
+}
+
+#dict {
+    margin-top: 20px;
+    margin-left: 25px;
+    height: 30px;
+    width: 150px;
+    border-radius: 30%;
     font-size: 12px;
 }

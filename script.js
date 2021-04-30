@@ -1,5 +1,4 @@
-chrome.tabs.executeScript({
-    code: 'document.querySelector("h3#articleTitle").innerText'  
-}, function(result){
-    document.querySelector('#content').innerText = result;
+var highlight = document.getElementById('highlight');
+highlight.addEventListener('click', function(event) {  
+    chrome.tabs.executeScript({file: "click.js"});
 });
