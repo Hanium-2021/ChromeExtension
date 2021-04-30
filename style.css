@@ -1,6 +1,7 @@
 body {
     width: 200px;
-    height: 300px;
+    height: 150px;
+    background-color: burlywood;
 }
 
 input:hover {
@@ -23,4 +24,18 @@ input:hover {
     width: 150px;
     border-radius: 30%;
     font-size: 12px;
+}
+
+#dict_box {
+    display: none;
+    margin: 0px;
+    margin-top: 20px;
+    margin-left: 18px;
+}
+
+.hashtag {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
