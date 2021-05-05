@@ -1,3 +1,4 @@
+//팝업 생성
 function cratePopup(document_body, document) {
   if (!isPopupExist()) {
     //popup box style
@@ -50,7 +51,7 @@ function cratePopup(document_body, document) {
       margin-left: 20px;
       margin-bottom: 20px;
   } 
-`;
+    `;
     var styleSheet = document.createElement("style");
     styleSheet.type = "text/css";
     styleSheet.innerText = styles;
@@ -59,17 +60,28 @@ function cratePopup(document_body, document) {
     var main_box = document.createElement("div");
     main_box.id = "main_box";
     main_box.innerHTML = `
-<input type="button" id="highlight" value="하이라이팅">    
-<div id="content"></div>
-<input type="button" id="dict" value="사전검색">   
-<input type="search" id="dict_box">
-<div class="hashtag">#해시태그1</div>
-<div class="hashtag">#해시태그2</div>
-`;
+    <input type="button" id="highlight" value="하이라이팅">    
+    <div id="content"></div>
+    <input type="button" id="dict" value="사전검색">   
+    <input type="search" id="dict_box">
+    <div class="hashtag">#해시태그1</div>
+    <div class="hashtag">#해시태그2</div>
+    `;
     document_body.appendChild(main_box);
+
+    var highlight_btn = document.getElementById("highlight");
+    highlight_btn.addEventListener("click", () => {
+      makeHighlight();
+    });
+    var dict_btn = document.getElementById("dict");
+    var dict_box = document.getElementById("dict_box");
+    dict_btn.addEventListener("click", () => {
+      executeDictionary();
+    });
     disapperPopup();
   }
 }
+
 //팝업 유무 확인
 function isPopupExist() {
   let popupBox = document.getElementById("main_box");
@@ -84,7 +96,25 @@ function disapperPopup() {
   let popupBox = document.getElementById("main_box");
   setTimeout(() => {
     popupBox.remove();
-  }, 5000);
+  }, 9000);
+}
+
+function makeHighlight() {
+  if (
+    document.querySelector("h3#articleTitle").style.backgroundColor === "yellow"
+  ) {
+    document.querySelector("h3#articleTitle").style.backgroundColor = "white";
+  } else {
+    document.querySelector("h3#articleTitle").style.backgroundColor = "yellow";
+  }
+}
+
+function executeDictionary() {
+  if (dict_box.style.display === "none") {
+    dict_box.style.display = "block";
+  } else {
+    dict_box.style.display = "none";
+  }
 }
 
 chrome.extension.sendMessage({
