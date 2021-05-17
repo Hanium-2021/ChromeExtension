@@ -4,4 +4,6 @@ function onWindowLoad() {
     file: "scripts/create_popup.js",
   });
 }
-window.onload = onWindowLoad;
+chrome.browserAction.onClicked.addListener(function (tab) {
+  onWindowLoad();
+});
