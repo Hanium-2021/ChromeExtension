@@ -1,10 +1,12 @@
 //팝업 생성
 function cratePopup(document_body, document) {
   if (!isPopupExist()) {
+    let timerId = null;
+
     //popup box style
-    var styles = `
+    let styles = `
   #main_box {
-      right: calc(50% - 680px);
+      right: 2%;
       position: fixed;
       top: 5px;
       border: 1px solid black;
@@ -13,7 +15,8 @@ function cratePopup(document_body, document) {
       border-radius: 4px;
       width: 200px;
       height: 150px;
-      background-color: burlywood;
+      background-color: white;
+      box-shadow: rgb(0,0,0,30%)1px 4px 3px;
   }
 
   #main_box > input:hover {
@@ -51,15 +54,20 @@ function cratePopup(document_body, document) {
       margin-left: 20px;
       margin-bottom: 20px;
   } 
+
+  #main_box > #close_popup{
+    cursor:pointer;
+  }
     `;
-    var styleSheet = document.createElement("style");
+    let styleSheet = document.createElement("style");
     styleSheet.type = "text/css";
     styleSheet.innerText = styles;
     document.head.appendChild(styleSheet);
     //popup box html
-    var main_box = document.createElement("div");
+    let main_box = document.createElement("div");
     main_box.id = "main_box";
     main_box.innerHTML = `
+    <div id="close_popup">닫기</div>
     <input type="button" id="highlight" value="하이라이팅">    
     <div id="content"></div>
     <input type="button" id="dict" value="사전검색">   
@@ -69,16 +77,22 @@ function cratePopup(document_body, document) {
     `;
     document_body.appendChild(main_box);
 
-    var highlight_btn = document.getElementById("highlight");
+    let highlight_btn = document.getElementById("highlight");
     highlight_btn.addEventListener("click", () => {
       makeHighlight();
     });
-    var dict_btn = document.getElementById("dict");
-    var dict_box = document.getElementById("dict_box");
+
+    let dict_btn = document.getElementById("dict");
+    let dict_box = document.getElementById("dict_box");
+    let close_popup = document.getElementById("close_popup");
+
     dict_btn.addEventListener("click", () => {
       executeDictionary();
     });
-    disapperPopup();
+
+    close_popup.addEventListener("click", () => {
+      disapperPopup();
+    });
   }
 }
 
@@ -91,14 +105,14 @@ function isPopupExist() {
     return true;
   }
 }
+
 //팝업 사라지기
 function disapperPopup() {
   let popupBox = document.getElementById("main_box");
-  setTimeout(() => {
-    popupBox.remove();
-  }, 9000);
+  popupBox.remove();
 }
 
+//하이라이팅
 function makeHighlight() {
   if (
     document.querySelector("h3#articleTitle").style.backgroundColor === "yellow"
@@ -109,6 +123,7 @@ function makeHighlight() {
   }
 }
 
+//사전실행
 function executeDictionary() {
   if (dict_box.style.display === "none") {
     dict_box.style.display = "block";
